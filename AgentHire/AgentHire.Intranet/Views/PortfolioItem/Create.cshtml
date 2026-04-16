@@ -1,0 +1,56 @@
+@model AgentHire.Data.Data.Agents.PortfolioItem
+
+@{
+    ViewData["Title"] = "Create Portfolio Item";
+}
+
+<style>
+    .form-card {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        background-color: #fff;
+    }
+</style>
+
+<div class="form-card shadow-sm">
+    <h2 class="mb-4">Create Portfolio Item</h2>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProjectUrl" class="form-label"></label>
+            <input asp-for="ProjectUrl" class="form-control" />
+            <span asp-validation-for="ProjectUrl" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="IdAgent" class="form-label">Assigned Agent</label>
+            <select asp-for="IdAgent" class="form-select" asp-items="ViewBag.IdAgent"></select>
+            <span asp-validation-for="IdAgent" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Save Item</button>
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

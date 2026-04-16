@@ -1,0 +1,24 @@
+@model IEnumerable<AgentHire.Data.Data.Agents.PortfolioItem>
+
+<div class="portfolio-index">
+    <header class="content-header">
+        <h1>Portfolio</h1>
+    </header>
+
+    <div class="card-grid">
+        @foreach (var item in Model)
+        {
+            <div class="portfolio-item-card">
+                <div class="card-content">
+                    <h3>@item.Title</h3>
+                    <p class="truncate">@item.Description</p>
+                </div>
+                <div class="card-actions">
+                    <a asp-action="Details" asp-route-id="@item.IdPortfolioItem" class="details-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,31 @@
+@model AgentHire.Data.Data.Agents.Specialization
+
+@{
+    ViewData["Title"] = "Specialization Details";
+}
+
+<div class="card mx-auto" style="max-width: 600px;">
+    <div class="card-header">
+        <h1>Details</h1>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.IdSpecialization" class="btn btn-sm btn-outline-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-sm btn-outline-secondary">Back to List</a>
+    </div>
+</div>

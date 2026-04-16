@@ -1,0 +1,38 @@
+@model IEnumerable<AgentHire.Data.Data.Projects.Inquiry>
+
+@{
+    ViewData["Title"] = "Inquiries";
+}
+
+<div class="dashboard">
+    <h1>Inquiries</h1>
+    <div style="margin-bottom:1rem;">
+        <a asp-action="Create" class="btn btn-primary">+ New Inquiry</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.SenderName)</th>
+                <th>@Html.DisplayNameFor(m => m.Email)</th>
+                <th>@Html.DisplayNameFor(m => m.SubmittedAt)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.SenderName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SubmittedAt)</td>
+                    <td style="text-align:right;">
+                        <a asp-action="Details" asp-route-id="@item.IdInquiry" class="btn btn-sm btn-outline">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.IdInquiry" class="btn btn-sm btn-outline">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.IdInquiry" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

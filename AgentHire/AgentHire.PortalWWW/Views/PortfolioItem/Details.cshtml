@@ -1,0 +1,34 @@
+@model AgentHire.Data.Data.Agents.PortfolioItem
+
+<div class="portfolio-details">
+    <article class="card">
+        <div class="card-header">
+            <h1>@Model.Title</h1>
+        </div>
+        
+        <div class="card-body">
+            <section class="detail-section">
+                <label>Description</label>
+                <p>@Model.Description</p>
+            </section>
+
+            @if (!string.IsNullOrEmpty(Model.ProjectUrl))
+            {
+                <section class="detail-section">
+                    <label>Project URL</label>
+                    <p>
+                        <a href="@Model.ProjectUrl" target="_blank" rel="noopener">
+                            @Model.ProjectUrl
+                        </a>
+                    </p>
+                </section>
+            }
+        </div>
+
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-ghost">
+                Back to List
+            </a>
+        </div>
+    </article>
+</div>

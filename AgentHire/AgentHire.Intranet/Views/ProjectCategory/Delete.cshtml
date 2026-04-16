@@ -1,0 +1,36 @@
+@model AgentHire.Data.Data.Projects.ProjectCategory
+
+@{
+    ViewData["Title"] = "Delete Project Category";
+}
+
+<h1>Delete</h1>
+
+<div class="alert alert-warning">
+    <h3>Are you sure you want to delete this?</h3>
+</div>
+
+<div>
+    <h4>Project Category Summary</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdProjectCategory" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>

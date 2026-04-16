@@ -1,0 +1,26 @@
+@model IEnumerable<AgentHire.Data.Data.CMS.Page>
+
+<nav class="main-nav">
+    <ul>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    @if (item.NavTitle == "Contact")
+                    {
+                        <a asp-controller="Inquiry" asp-action="Index">@item.NavTitle</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-id="@item.IdPage">
+                            @item.NavTitle
+                        </a>
+                    }
+                </li>
+            }
+        }
+    </ul>
+</nav>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Agents - AgentHire Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="void-canvas" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow-agents">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g class="node-line" style="animation-delay:0.5s">
+                <line x1="180"  y1="120" x2="540"  y2="200" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="540"  y1="200" x2="900"  y2="100" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="900"  y1="100" x2="1260" y2="280" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="1260" y1="280" x2="1380" y2="700" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="1380" y1="700" x2="900"  y2="820" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="900"  y1="820" x2="360"  y2="750" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="360"  y1="750" x2="60"   y2="500" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="60"   y1="500" x2="180"  y2="120" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="540"  y1="200" x2="360"  y2="750" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+                <line x1="900"  y1="100" x2="900"  y2="820" stroke="#9DFFB0" stroke-width="0.4" stroke-dasharray="4 12"/>
+            </g>
+            <g style="opacity:0.1; filter:blur(1.5px)">
+                <circle class="node-circle" cx="180"  cy="120" r="2"   fill="#9DFFB0" style="animation-delay:0s"/>
+                <circle class="node-circle" cx="1260" cy="280" r="2"   fill="#9DFFB0" style="animation-delay:2s"/>
+                <circle class="node-circle" cx="900"  cy="820" r="1.5" fill="#9DFFB0" style="animation-delay:4s"/>
+            </g>
+            <g style="opacity:0.22; filter:blur(0.4px)">
+                <circle class="node-circle" cx="540"  cy="200" r="2.5" fill="#9DFFB0" style="animation-delay:0.8s"/>
+                <circle class="node-circle" cx="60"   cy="500" r="2"   fill="#9DFFB0" style="animation-delay:3.2s"/>
+                <circle class="node-circle" cx="360"  cy="750" r="2"   fill="#9DFFB0" style="animation-delay:1.6s"/>
+            </g>
+            <g style="opacity:0.4">
+                <circle class="node-circle" cx="900"  cy="100" r="3.5" fill="#9DFFB0" filter="url(#glow-agents)" style="animation-delay:1s"/>
+                <circle class="node-circle" cx="1380" cy="700" r="3"   fill="#9DFFB0" filter="url(#glow-agents)" style="animation-delay:2.5s"/>
+            </g>
+            <g style="opacity:0.15; font-family:'Space Mono',monospace; font-size:7px; fill:#9DFFB0; letter-spacing:0.1em">
+                <text x="186"  y="115">AG-001</text>
+                <text x="906"  y="95">AG-002</text>
+                <text x="1266" y="275">AG-003</text>
+                <text x="366"  y="745">AG-004</text>
+            </g>
+        </svg>
+    </div>
+    <div class="void-vignette" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index">AgentHire</a>
+            </div>
+            @await Html.PartialAsync("PagesPartial", (IEnumerable<AgentHire.Data.Data.CMS.Page>)ViewBag.ModelPages)
+        </div>
+        <div class="container feature-nav-bar">
+            <nav class="feature-nav">
+                <a asp-controller="Agent" asp-action="Index">Hire Agents</a>
+                <a asp-controller="Project" asp-action="Index">Open Missions</a>
+                <a asp-controller="Specialization" asp-action="Index">Specializations</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container layout-sidebar">
+        <aside class="sidebar-nav-column">
+            @await Component.InvokeAsync("SpecializationsMenuComponent")
+        </aside>
+
+        <main role="main" class="content-main-column">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span class="footer-brand">AgentHire</span>
+            <p class="footer-copy">&copy; @DateTime.Now.Year — AgentHire Portal &nbsp;·&nbsp; Agents Network</p>
+            <span class="footer-copy" style="opacity:0.12">Nodes: Active</span>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,45 @@
+@model IEnumerable<AgentHire.Data.Data.Agents.Agent>
+
+@{
+    Layout = "~/Views/Shared/_AgentsLayout.cshtml";
+    ViewData["Title"] = "Our Agents";
+}
+
+<section class="agent-search-section">
+    <form asp-action="Index" method="get" class="search-form">
+        <div class="search-group">
+            <input type="text" 
+                   name="searchQuery" 
+                   value="@ViewBag.SearchQuery" 
+                   placeholder="Search agents by name or specialization..." 
+                   class="search-input" />
+            <button type="submit" class="btn-primary">Search</button>
+        </div>
+    </form>
+</section>
+
+<section class="agent-list-section">
+    <div class="card-grid">
+        @foreach (var item in Model)
+        {
+            <div class="agent-card @(item.IsHighlighted ? "highlighted" : "")">
+                <div class="agent-avatar">
+                    @if (!string.IsNullOrEmpty(item.AvatarUrl))
+                    {
+                        <img src="@item.AvatarUrl" alt="@item.FullName" />
+                    }
+                    else
+                    {
+                        <div class="avatar-placeholder"></div>
+                    }
+                </div>
+                <div class="agent-info">
+                    <h3>@item.FullName</h3>
+                    <p class="specialization-tag">@item.Specialization?.Name</p>
+                    <p class="rate">Rate: @item.HourlyRate.ToString("C")/hr</p>
+                    <a asp-action="Details" asp-route-id="@item.IdAgent" class="btn-detail">View Profile</a>
+                </div>
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,45 @@
+@model AgentHire.Data.Data.Agents.Agent
+
+@{
+    ViewData["Title"] = Model.FullName;
+    Layout = "~/Views/Shared/_AgentsLayout.cshtml";
+}
+
+<div class="card agent-profile">
+    @if (!string.IsNullOrEmpty(Model.AvatarUrl))
+    {
+        <img src="@Model.AvatarUrl" alt="@Model.FullName" class="agent-profile-avatar" />
+    }
+    <div class="card-body">
+        <span class="card-tag">Active Agent</span>
+        <h1>@Model.FullName</h1>
+        <p class="specialization-tag">@(Model.Specialization?.Name ?? "")</p>
+        <p class="rate"><strong>@Model.HourlyRate.ToString("C") / hr</strong></p>
+        <p style="color: var(--membrane-dim); line-height: 1.75; margin-top: 1rem;">@Model.Bio</p>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+            <a asp-action="Index" class="btn btn-ghost">Back to Agents</a>
+            <a asp-controller="Inquiry" asp-action="Index" class="btn btn-primary">Hire @Model.FullName</a>
+        </div>
+    </div>
+</div>
+
+@if (Model.PortfolioItem != null && Model.PortfolioItem.Any())
+{
+    <p class="section-label" style="margin-top: 2rem;">Portfolio</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.25rem;">
+        @foreach (var item in Model.PortfolioItem)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h3>@item.Title</h3>
+                    <p>@item.Description</p>
+                    @if (!string.IsNullOrEmpty(item.ProjectUrl))
+                    {
+                        <a href="@item.ProjectUrl" target="_blank" class="btn btn-ghost" style="margin-top: auto;">View Project</a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

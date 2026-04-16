@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AgentHire Admin</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a class="nav-brand" asp-area="" asp-controller="Home" asp-action="Index">AgentHire Admin</a>
+                <div class="nav-menu">
+                    <div class="nav-group">
+                        <span class="nav-label">CMS</span>
+                        <a asp-controller="Page" asp-action="Index">Pages</a>
+                        <a asp-controller="NewsItem" asp-action="Index">News</a>
+                        <a asp-controller="SiteConfig" asp-action="Index">Site Config</a>
+                    </div>
+                    <div class="nav-group">
+                        <span class="nav-label">Agents</span>
+                        <a asp-controller="Specialization" asp-action="Index">Specializations</a>
+                        <a asp-controller="Agent" asp-action="Index">Agents</a>
+                        <a asp-controller="PortfolioItem" asp-action="Index">Portfolio</a>
+                    </div>
+                    <div class="nav-group">
+                        <span class="nav-label">Projects</span>
+                        <a asp-controller="ProjectCategory" asp-action="Index">Categories</a>
+                        <a asp-controller="Project" asp-action="Index">Projects</a>
+                        <a asp-controller="Inquiry" asp-action="Index">Inquiries</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            &copy; @DateTime.Now.Year - AgentHire Admin
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="AgentHire.Data/AgentHire.Data.csproj" />
+  <Project Path="AgentHire.Interfaces/AgentHire.Interfaces.csproj" />
+  <Project Path="AgentHire.Intranet/AgentHire.Intranet.csproj" />
+  <Project Path="AgentHire.PortalWWW/AgentHire.PortalWWW.csproj" />
+  <Project Path="AgentHire.Services/AgentHire.Services.csproj" />
+</Solution>

@@ -1,0 +1,44 @@
+@model AgentHire.Data.Data.CMS.SiteConfig
+
+@{
+    ViewData["Title"] = "Edit Config";
+}
+
+<div class="form-card">
+    <h2>Edit: <code>@Model.Key</code></h2>
+    @if (!string.IsNullOrEmpty(Model.Description))
+    {
+        <p style="color:#95a5b8; font-size:0.9rem; margin-bottom:1.5rem;">@Model.Description</p>
+    }
+
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="IdSiteConfig" />
+
+        <div class="form-group">
+            <label asp-for="Key"></label>
+            <input asp-for="Key" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Value"></label>
+            <input asp-for="Value" class="form-control" />
+            <span asp-validation-for="Value" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+
+        <div style="display:flex; gap:0.75rem; margin-top:1.5rem;">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a asp-action="Index" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

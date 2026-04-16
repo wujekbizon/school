@@ -1,0 +1,30 @@
+@model IEnumerable<AgentHire.Data.Data.Agents.Specialization>
+
+@{
+    ViewData["Title"] = "Specializations";
+}
+
+<p class="section-label">Network Domains</p>
+<h1>Specializations</h1>
+<hr />
+
+<div class="card-grid">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <span class="card-tag">Domain</span>
+                <h3>@item.Name</h3>
+                <p>@item.Description</p>
+                <div style="margin-top: auto; padding-top: 1rem;">
+                    <a asp-controller="Specialization"
+                           asp-action="Details"
+                           asp-route-id="@item.IdSpecialization"
+                           class="btn btn-ghost" style="width: 100%; display: block; text-align: center;">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

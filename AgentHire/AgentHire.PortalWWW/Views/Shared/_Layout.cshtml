@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AgentHire Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="void-canvas" aria-hidden="true">
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow-main">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <!-- Connection lines -->
+            <g class="node-line" style="animation-delay:0s">
+                <line x1="216" y1="180" x2="720" y2="90"  stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="720" y1="90"  x2="1152" y2="135" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="1152" y1="135" x2="1296" y2="630" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="1296" y1="630" x2="1080" y2="810" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="648"  y1="765" x2="144"  y2="675" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="144"  y1="675" x2="216"  y2="180" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="432"  y1="360" x2="720"  y2="90"  stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+                <line x1="432"  y1="360" x2="648"  y2="765" stroke="#9DFFB0" stroke-width="0.5" stroke-dasharray="5 10"/>
+            </g>
+            <!-- Depth layer 1 — far, blurred -->
+            <g style="opacity:0.12; filter:blur(1px)">
+                <circle class="node-circle" cx="216"  cy="180" r="2"   fill="#9DFFB0" style="animation-delay:0s"/>
+                <circle class="node-circle" cx="1152" cy="135" r="2.5" fill="#9DFFB0" style="animation-delay:1.2s"/>
+                <circle class="node-circle" cx="1080" cy="810" r="1.5" fill="#9DFFB0" style="animation-delay:2.4s"/>
+            </g>
+            <!-- Depth layer 2 — mid -->
+            <g style="opacity:0.25; filter:blur(0.4px)">
+                <circle class="node-circle" cx="720"  cy="90"  r="3"   fill="#9DFFB0" filter="url(#glow-main)" style="animation-delay:0.6s"/>
+                <circle class="node-circle" cx="432"  cy="360" r="2"   fill="#9DFFB0" style="animation-delay:3s"/>
+                <circle class="node-circle" cx="144"  cy="675" r="2.5" fill="#9DFFB0" style="animation-delay:1.8s"/>
+            </g>
+            <!-- Depth layer 3 — near, sharp -->
+            <g style="opacity:0.45">
+                <circle class="node-circle" cx="1296" cy="630" r="4"   fill="#9DFFB0" filter="url(#glow-main)" style="animation-delay:0.9s"/>
+                <circle class="node-circle" cx="648"  cy="765" r="2"   fill="#9DFFB0" style="animation-delay:4s"/>
+            </g>
+            <!-- Node ID labels -->
+            <g style="opacity:0.18; font-family:'Space Mono',monospace; font-size:8px; fill:#9DFFB0; letter-spacing:0.1em">
+                <text x="222" y="175">AG-882</text>
+                <text x="726" y="85">AG-104</text>
+                <text x="1158" y="130">AG-993</text>
+                <text x="1302" y="625">AG-042</text>
+                <text x="654"  y="760">AG-711</text>
+                <text x="150"  y="670">AG-550</text>
+            </g>
+        </svg>
+    </div>
+    <div class="void-vignette" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-flex">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index">AgentHire</a>
+            </div>
+            @await Html.PartialAsync("PagesPartial", (IEnumerable<AgentHire.Data.Data.CMS.Page>)ViewBag.ModelPages)
+        </div>
+        <div class="container feature-nav-bar">
+            <nav class="feature-nav">
+                <a asp-controller="Agent" asp-action="Index">Hire Agents</a>
+                <a asp-controller="Project" asp-action="Index">Open Missions</a>
+                <a asp-controller="Specialization" asp-action="Index">Specializations</a>
+            </nav>
+        </div>
+    </header>
+    @{
+        var hasSidebar = ViewBag.ModelNews != null;
+    }
+    <div class="container @(hasSidebar ? "main-grid" : "main-full")">
+        <main role="main" class="content-area">
+            @RenderBody()
+        </main>
+
+        @if (hasSidebar)
+        {
+            <aside class="sidebar-area">
+                @await Html.PartialAsync("NewsPartial", (IEnumerable<AgentHire.Data.Data.CMS.NewsItem>)ViewBag.ModelNews)
+            </aside>
+        }
+    </div>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span class="footer-brand">AgentHire</span>
+            <p class="footer-copy">&copy; @DateTime.Now.Year — AgentHire Portal &nbsp;·&nbsp; v1.0 LIVING_VOID</p>
+            <span class="footer-copy" style="opacity:0.12">Uptime: 99.9992%</span>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

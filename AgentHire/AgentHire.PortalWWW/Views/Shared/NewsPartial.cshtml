@@ -1,0 +1,28 @@
+@model IEnumerable<AgentHire.Data.Data.CMS.NewsItem>
+
+<section class="news-sidebar">
+    <h3>Latest Dispatches</h3>
+    <ul class="news-list">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <li class="news-item">
+                    <a asp-controller="News"
+                       asp-action="Details"
+                       asp-route-id="@item.IdNewsItem">
+                        @item.Title
+                    </a>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="news-item">
+                <span style="font-family:var(--font-mono); font-size:0.62rem; color:var(--membrane-dim); opacity:0.4; letter-spacing:0.1em;">
+                    — No transmissions —
+                </span>
+            </li>
+        }
+    </ul>
+</section>

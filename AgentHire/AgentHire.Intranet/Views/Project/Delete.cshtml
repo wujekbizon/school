@@ -1,0 +1,33 @@
+@model AgentHire.Data.Data.Projects.Project
+
+@{
+    ViewData["Title"] = "Usuwanie Projektu";
+}
+
+<div class="alert alert-danger">
+    <h3 class="mb-0">Czy na pewno chcesz usunąć ten projekt?</h3>
+    <p>Tej operacji nie można cofnąć.</p>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title text-uppercase text-muted small">Podsumowanie usuwanego elementu</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">Tytuł</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3">Budżet</dt>
+            <dd class="col-sm-9">@Model.Budget.ToString("C")</dd>
+
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">@Model.Status</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="IdProject" />
+    <button type="submit" class="btn btn-danger">Potwierdź usunięcie</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Anuluj</a>
+</form>

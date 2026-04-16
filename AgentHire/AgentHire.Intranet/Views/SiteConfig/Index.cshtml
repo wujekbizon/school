@@ -1,0 +1,34 @@
+@model IList<AgentHire.Data.Data.CMS.SiteConfig>
+
+@{
+    ViewData["Title"] = "Site Config";
+}
+
+<div class="dashboard">
+    <h1>Site Config</h1>
+    <p style="color:#95a5b8; margin-bottom:1.5rem;">Edit portal labels, button texts, and UI strings. Keys are fixed — only values are editable.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><code>@item.Key</code></td>
+                    <td>@item.Value</td>
+                    <td style="color:#95a5b8; font-size:0.85rem;">@item.Description</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdSiteConfig" class="btn btn-sm btn-outline">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

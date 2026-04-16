@@ -1,0 +1,14 @@
+@model IEnumerable<AgentHire.Data.Data.Agents.Specialization>
+
+<ul class="sidebar-nav">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a asp-controller="Specialization" 
+               asp-action="Index" 
+               asp-route-id="@item.IdSpecialization">
+                @item.Name
+            </a>
+        </li>
+    }
+</ul>

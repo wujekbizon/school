@@ -1,0 +1,31 @@
+@model AgentHire.Data.Data.Projects.Inquiry
+
+@{
+    ViewData["Title"] = "Inquiry Details";
+}
+
+<div class="dashboard">
+    <h1>Inquiry #@Model.IdInquiry</h1>
+
+    <div class="card">
+        <dl>
+            <dt>@Html.DisplayNameFor(m => m.SenderName)</dt>
+            <dd>@Html.DisplayFor(m => m.SenderName)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Email)</dt>
+            <dd>@Html.DisplayFor(m => m.Email)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.Message)</dt>
+            <dd>@Html.DisplayFor(m => m.Message)</dd>
+
+            <dt>@Html.DisplayNameFor(m => m.SubmittedAt)</dt>
+            <dd>@Html.DisplayFor(m => m.SubmittedAt)</dd>
+        </dl>
+    </div>
+
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem;">
+        <a asp-action="Edit" asp-route-id="@Model.IdInquiry" class="btn btn-outline">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.IdInquiry" class="btn btn-danger">Delete</a>
+        <a asp-action="Index" class="btn btn-outline">Back to List</a>
+    </div>
+</div>

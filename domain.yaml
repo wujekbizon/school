@@ -1,0 +1,148 @@
+# domain.yaml — AgentHire school project domain configuration
+# This is the ONLY file that changes between school projects.
+# school_pipeline.py reads this and generates all task JSONs.
+# Swap this file for a new project → full new .NET solution generated.
+
+solution:
+  name: "AgentHire"
+  namespace_root: "AgentHire"
+  db_context: "AgentHireContext"
+  connection_string_name: "AgentHireContext"
+
+entities:
+
+  # --- CMS (portal navigation + news) ---
+
+  - name: "Page"
+    domain: "CMS"
+    pk: "IdPage"
+    cms_role: "pages"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "NavTitle",  type: "string", max_length: 15,  required: true  }
+      - { name: "Title",     type: "string", max_length: 40,  required: true  }
+      - { name: "Content",   type: "string", column: "nvarchar(MAX)", required: true  }
+      - { name: "Position",  type: "int",    required: true  }
+    fk_parent: null
+
+  - name: "NewsItem"
+    domain: "CMS"
+    pk: "IdNewsItem"
+    cms_role: "news"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "LinkTitle", type: "string", max_length: 15,  required: true  }
+      - { name: "Title",     type: "string", max_length: 40,  required: true  }
+      - { name: "Content",   type: "string", column: "nvarchar(MAX)", required: true  }
+      - { name: "Position",  type: "int",    required: true  }
+    fk_parent: null
+
+  # --- Agents domain ---
+
+  - name: "Specialization"
+    domain: "Agents"
+    pk: "IdSpecialization"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "Name",        type: "string", max_length: 30, required: true  }
+      - { name: "Description", type: "string", column: "nvarchar(MAX)", required: false }
+    fk_parent: null
+
+  - name: "Agent"
+    domain: "Agents"
+    pk: "IdAgent"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "FullName",      type: "string",  max_length: 60, required: true  }
+      - { name: "Bio",           type: "string",  column: "nvarchar(MAX)", required: true  }
+      - { name: "HourlyRate",    type: "decimal", column: "money", required: true  }
+      - { name: "AvatarUrl",     type: "string",  required: true  }
+      - { name: "IsHighlighted", type: "bool",    required: false, default: false  }
+    fk_parent: "Specialization"
+
+  - name: "PortfolioItem"
+    domain: "Agents"
+    pk: "IdPortfolioItem"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "Title",       type: "string", max_length: 80, required: true  }
+      - { name: "Description", type: "string", column: "nvarchar(MAX)", required: true  }
+      - { name: "ProjectUrl",  type: "string", required: false }
+    fk_parent: "Agent"
+
+  # --- Projects domain ---
+
+  - name: "ProjectCategory"
+    domain: "Projects"
+    pk: "IdProjectCategory"
+    portal_exposed: false
+    intranet_crud: true
+    fields:
+      - { name: "Name",        type: "string", max_length: 30, required: true  }
+      - { name: "Description", type: "string", column: "nvarchar(MAX)", required: false }
+    fk_parent: null
+
+  - name: "Project"
+    domain: "Projects"
+    pk: "IdProject"
+    portal_exposed: true
+    intranet_crud: true
+    fields:
+      - { name: "Title",       type: "string",   max_length: 80, required: true  }
+      - { name: "Description", type: "string",   column: "nvarchar(MAX)", required: true  }
+      - { name: "Budget",      type: "decimal",  column: "money", required: true  }
+      - { name: "Status",      type: "string",   max_length: 20, required: true  }
+      - { name: "PostedDate",  type: "DateTime", required: true  }
+    fk_parent: "ProjectCategory"
+
+  - name: "Inquiry"
+    domain: "Projects"
+    pk: "IdInquiry"
+    portal_exposed: true
+    intranet_crud: false   # Intranet: Index + Details only, no Create/Edit/Delete
+    fields:
+      - { name: "SenderName",  type: "string",   max_length: 60,  required: true  }
+      - { name: "Email",       type: "string",   max_length: 100, required: true  }
+      - { name: "Message",     type: "string",   column: "nvarchar(MAX)", required: true  }
+      - { name: "SubmittedAt", type: "DateTime", required: true  }
+    fk_parent: null
+
+# --- 5 additional elements ---
+
+additional_elements:
+
+  - id: "A"
+    description: "Search agents by keyword (FullName, Bio) on Portal Agent list page"
+    entity: "Agent"
+    service_method: "GetAgentsByQuery(string query)"
+    search_fields: ["FullName", "Bio"]
+
+  - id: "D"
+    description: "ViewComponent — SpecializationsMenuComponent sidebar on Agent section pages"
+    entity: "Specialization"
+    component_name: "SpecializationsMenuComponent"
+    layout: "_AgentsLayout.cshtml"
+    applies_to_controllers: ["Agent"]
+
+  - id: "F"
+    description: "Specialization Details page includes all child Agents (parent + related)"
+    entity: "Specialization"
+    service_method: "GetSpecializationWithAgents(int id)"
+    child_entity: "Agent"
+
+  - id: "G"
+    description: "IsHighlighted flag on Agent — Portal home page shows featured agents section"
+    entity: "Agent"
+    service_method: "GetHighlightedAgents()"
+    homepage_viewbag_key: "FeaturedAgents"
+
+  - id: "H"
+    description: "Contact form — Inquiry submitted from Portal, read-only list in Intranet"
+    entity: "Inquiry"
+    portal_action: "POST saves to DB via direct DbContext injection"
+    intranet_action: "Index + Details read-only"

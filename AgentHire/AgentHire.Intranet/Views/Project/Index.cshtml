@@ -1,0 +1,40 @@
+@model IEnumerable<AgentHire.Data.Data.Projects.Project>
+
+@{
+    ViewData["Title"] = "Lista Projektów";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Lista Projektów</h1>
+    <a asp-action="Create" class="btn btn-sm btn-outline-primary">Dodaj nowy projekt</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Budżet</th>
+            <th>Status</th>
+            <th>Data publikacji</th>
+            <th>Kategoria</th>
+            <th class="text-end">Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Budget.ToString("C")</td>
+                <td>@item.Status</td>
+                <td>@item.PostedDate.ToShortDateString()</td>
+                <td>@(item.IdProjectCategory != null ? item.IdProjectCategory : "Brak")</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-secondary">Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-info">Szczegóły</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-danger">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

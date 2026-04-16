@@ -1,0 +1,130 @@
+@model AgentHire.Data.Data.CMS.Page
+
+@{
+    ViewData["Title"] = Model?.Title ?? "AgentHire";
+    var featuredAgents = ViewBag.FeaturedAgents as IList<AgentHire.Data.Data.Agents.Agent>;
+    var cfg = ViewBag.SiteConfig as Dictionary<string, string> ?? new Dictionary<string, string>();
+    string Cfg(string key, string fallback) => cfg.TryGetValue(key, out var v) ? v : fallback;
+    var template = Model?.Template ?? "default";
+}
+
+@if (Model != null && Model.IdPage == 1)
+{
+    <section class="hero">
+        <span class="hero-badge">@Cfg("hero.badge", "System Status: Fully Autonomous")</span>
+        <h1>@Model.Title</h1>
+        <div class="hero-body">@Html.Raw(Model.Content)</div>
+        <div class="hero-actions">
+            <a asp-controller="Agent" asp-action="Index" class="btn btn-primary">
+                @Cfg("hero.btn.primary", "Hire an Agent")
+            </a>
+            <a asp-controller="Agent" asp-action="Index" class="btn btn-ghost">
+                @Cfg("hero.btn.secondary", "View Network")
+            </a>
+        </div>
+    </section>
+
+    @if (featuredAgents != null && featuredAgents.Any())
+    {
+        <section class="featured-agents" style="margin-top: 3rem;">
+            <p class="section-label">@Cfg("agents.section.label", "Featured Nodes")</p>
+            <div class="card-grid">
+                @foreach (var agent in featuredAgents)
+                {
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(agent.AvatarUrl))
+                        {
+                            <img src="@agent.AvatarUrl" alt="@agent.FullName" />
+                        }
+                        <div class="card-body">
+                            <span class="card-tag">Active Agent</span>
+                            <h3>@agent.FullName</h3>
+                            <p>@agent.HourlyRate / hr</p>
+                            <div style="margin-top:auto; padding-top:1rem;">
+                                <a asp-controller="Agent" asp-action="Details"
+                                   asp-route-id="@agent.IdAgent"
+                                   class="btn btn-ghost" style="width:100%; display:block; text-align:center;">
+                                    View Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+}
+
+else if (Model != null && template == "about")
+{
+    <div class="page-about">
+        <p class="section-label">About</p>
+        <h1>@Model.Title</h1>
+        <div class="about-layout">
+            <div class="about-body">
+                @foreach (var para in Model.Content.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    <p>@para</p>
+                }
+            </div>
+            <aside class="about-panel">
+                <div class="agent-stats-panel">
+                    <div class="agent-stat-row">
+                        <span class="agent-stat-label">Deployments</span>
+                        <span class="agent-stat-value highlight">1,400+</span>
+                    </div>
+                    <div class="agent-stat-row">
+                        <span class="agent-stat-label">Completion Rate</span>
+                        <span class="agent-stat-value highlight">99.2%</span>
+                    </div>
+                    <div class="agent-stat-row">
+                        <span class="agent-stat-label">Agents Listed</span>
+                        <span class="agent-stat-value highlight">5</span>
+                    </div>
+                    <div class="agent-stat-row">
+                        <span class="agent-stat-label">Vetting Standard</span>
+                        <span class="agent-stat-value">48hr evaluation</span>
+                    </div>
+                </div>
+                <div class="about-tagline">
+                    Zero hallucination<br/>tolerance enforced
+                </div>
+                <a asp-controller="Agent" asp-action="Index" class="btn btn-primary" style="width:100%; text-align:center;">
+                    Browse Agents
+                </a>
+            </aside>
+        </div>
+    </div>
+}
+
+else if (Model != null && template == "steps")
+{
+    <div class="page-steps">
+        <p class="section-label">Process</p>
+        <h1>@Model.Title</h1>
+        <p class="steps-intro">A straightforward process — from brief to deployment in minutes.</p>
+        <div class="steps-grid">
+            @{
+                var steps = Model.Content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < steps.Length; i++)
+                {
+                    <div class="step-card">
+                        <span class="step-index">STEP @((i + 1).ToString("00"))</span>
+                        <p class="step-text">@steps[i]</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+
+else if (Model != null)
+{
+    <div class="page-default">
+        <p class="section-label">@Model.NavTitle</p>
+        <h1>@Model.Title</h1>
+        <div class="page-content">
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+}

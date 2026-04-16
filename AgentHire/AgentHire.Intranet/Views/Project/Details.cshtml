@@ -1,0 +1,41 @@
+@model AgentHire.Data.Data.Projects.Project
+
+@{
+    ViewData["Title"] = "Szczegóły Projektu";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-light">
+        <h2 class="mb-0">Szczegóły projektu: @Model.Title</h2>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3 text-muted">ID Projektu</dt>
+            <dd class="col-sm-9">@Model.IdProject</dd>
+
+            <dt class="col-sm-3 text-muted">Tytuł</dt>
+            <dd class="col-sm-9">@Model.Title</dd>
+
+            <dt class="col-sm-3 text-muted">Opis</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+
+            <dt class="col-sm-3 text-muted">Budżet</dt>
+            <dd class="col-sm-9">@Model.Budget.ToString("C")</dd>
+
+            <dt class="col-sm-3 text-muted">Status</dt>
+            <dd class="col-sm-9">
+                <span class="badge bg-secondary">@Model.Status</span>
+            </dd>
+
+            <dt class="col-sm-3 text-muted">Data publikacji</dt>
+            <dd class="col-sm-9">@Model.PostedDate.ToLongDateString()</dd>
+
+            <dt class="col-sm-3 text-muted">Kategoria</dt>
+            <dd class="col-sm-9">@(Model.ProjectCategory?.Name ?? Model.IdProjectCategory.ToString())</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-white">
+        <a asp-action="Edit" asp-route-id="@Model.IdProject" class="btn btn-sm btn-outline-secondary">Edytuj</a>
+        <a asp-action="Index" class="btn btn-sm btn-outline-dark">Powrót do listy</a>
+    </div>
+</div>

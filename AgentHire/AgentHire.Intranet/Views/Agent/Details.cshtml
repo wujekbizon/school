@@ -1,0 +1,38 @@
+@model AgentHire.Data.Data.Agents.Agent
+
+@{
+    ViewData["Title"] = "Agent Details";
+}
+
+<div class="container mt-4">
+    <div class="card mx-auto shadow-sm" style="max-width: 800px;">
+        <div class="card-header bg-info text-white">
+            <h2 class="h5 mb-0">Agent Information</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.FullName)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.FullName)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Bio)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Bio)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HourlyRate)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.HourlyRate)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.AvatarUrl)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.AvatarUrl)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.IsHighlighted)</dt>
+                <dd class="col-sm-8">@(Model.IsHighlighted ? "Yes" : "No")</dd>
+
+                <dt class="col-sm-4">Specialization</dt>
+                <dd class="col-sm-8">@(Model.Specialization?.Name)</dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-light">
+            <a asp-action="Edit" asp-route-id="@Model.IdAgent" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

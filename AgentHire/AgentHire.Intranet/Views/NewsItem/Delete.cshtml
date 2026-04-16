@@ -1,0 +1,36 @@
+@model AgentHire.Data.Data.CMS.NewsItem
+
+@{
+    ViewData["Title"] = "Delete News Item";
+}
+
+<div class="container py-4">
+    <div class="alert alert-danger mx-auto" style="max-width: 800px;">
+        <h3>Are you sure you want to delete this?</h3>
+        <p>This action cannot be undone.</p>
+    </div>
+
+    <div class="card shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LinkTitle)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LinkTitle)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Position)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Position)</dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="IdNewsItem" />
+                <div class="d-flex justify-content-between align-items-center">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

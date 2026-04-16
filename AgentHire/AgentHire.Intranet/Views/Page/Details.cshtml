@@ -1,0 +1,34 @@
+@model AgentHire.Data.Data.CMS.Page
+
+@{
+    ViewData["Title"] = "Page Details";
+}
+
+<div class="container mt-4">
+    <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-header bg-light">
+            <h2 class="mb-0">Page Details</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NavTitle)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.NavTitle)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Position)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Position)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Content)</dt>
+                <dd class="col-sm-9">
+                    <div class="p-3 border rounded bg-light" style="white-space: pre-wrap;">@Html.DisplayFor(model => model.Content)</div>
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            <a asp-action="Edit" asp-route-id="@Model.IdPage" class="btn btn-primary">Edit Page</a>
+        </div>
+    </div>
+</div>

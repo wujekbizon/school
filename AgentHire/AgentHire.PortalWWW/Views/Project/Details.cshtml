@@ -1,0 +1,46 @@
+@model AgentHire.Data.Data.Projects.Project
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<p class="section-label">Project Brief</p>
+<div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+    <h1 style="margin-bottom:0;">@Model.Title</h1>
+    <a asp-action="Index" class="btn btn-ghost">Back to List</a>
+</div>
+<hr />
+
+<div class="agent-detail-layout">
+
+    <aside class="agent-detail-aside">
+        <div class="agent-stats-panel">
+            <div class="agent-stat-row">
+                <span class="agent-stat-label">@Html.DisplayNameFor(model => model.Budget)</span>
+                <span class="agent-stat-value highlight">@Html.DisplayFor(model => model.Budget)</span>
+            </div>
+            <div class="agent-stat-row">
+                <span class="agent-stat-label">@Html.DisplayNameFor(model => model.Status)</span>
+                <span class="agent-stat-value">
+                    <span class="badge badge-active">@Model.Status</span>
+                </span>
+            </div>
+            <div class="agent-stat-row">
+                <span class="agent-stat-label">@Html.DisplayNameFor(model => model.PostedDate)</span>
+                <span class="agent-stat-value">@Model.PostedDate.ToString("yyyy-MM-dd")</span>
+            </div>
+            <div class="agent-stat-row">
+                <span class="agent-stat-label">Category</span>
+                <span class="agent-stat-value">@(Model.ProjectCategory?.Name ?? "Uncategorized")</span>
+            </div>
+        </div>
+    </aside>
+
+    <div class="agent-detail-body">
+        <div class="agent-bio">
+            <h3>@Html.DisplayNameFor(model => model.Description)</h3>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+
+</div>

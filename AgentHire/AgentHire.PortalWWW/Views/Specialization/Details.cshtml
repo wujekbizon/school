@@ -1,0 +1,46 @@
+@model AgentHire.Data.Data.Agents.Specialization
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<p class="section-label">Network Domain</p>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+    <h1 style="margin-bottom: 0;">@Model.Name</h1>
+    <a asp-action="Index" class="btn btn-ghost">Back to List</a>
+</div>
+<hr />
+
+<div class="card" style="margin-bottom: 2rem;">
+    <div class="card-body">
+        <p>@Model.Description</p>
+    </div>
+</div>
+
+@if (Model.Agent != null && Model.Agent.Any())
+{
+    <p class="section-label">Specialists in @Model.Name</p>
+    <div class="card-grid">
+        @foreach (var agent in Model.Agent)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <span class="card-tag">Active Agent</span>
+                    <h3>@agent.FullName</h3>
+                    @if (!string.IsNullOrEmpty(agent.Bio))
+                    {
+                        <p>@agent.Bio</p>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="empty-state">
+        <div class="empty-state-icon">∅</div>
+        <h3>No Agents Assigned</h3>
+        <p>No agents are currently operating in this specialization.</p>
+    </div>
+}

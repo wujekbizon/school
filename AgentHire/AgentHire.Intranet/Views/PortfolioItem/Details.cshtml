@@ -1,0 +1,43 @@
+@model AgentHire.Data.Data.Agents.PortfolioItem
+
+@{
+    ViewData["Title"] = "Portfolio Item Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm mx-auto" style="max-width: 800px;">
+        <div class="card-header bg-white">
+            <h2 class="mb-0">Item Details</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 text-muted">Title</dt>
+                <dd class="col-sm-9 fw-bold">@Html.DisplayFor(model => model.Title)</dd>
+
+                <dt class="col-sm-3 text-muted">Agent</dt>
+                <dd class="col-sm-9">@(Model.Agent?.FullName)</dd>
+
+                <dt class="col-sm-3 text-muted">Project URL</dt>
+                <dd class="col-sm-9">
+                    @if (!string.IsNullOrEmpty(Model.ProjectUrl))
+                    {
+                        <a href="@Model.ProjectUrl" target="_blank">@Model.ProjectUrl</a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">N/A</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3 text-muted">Description</dt>
+                <dd class="col-sm-9">
+                    <p class="text-break">@Html.DisplayFor(model => model.Description)</p>
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer bg-light text-end">
+            <a asp-action="Edit" asp-route-id="@Model.IdPortfolioItem" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

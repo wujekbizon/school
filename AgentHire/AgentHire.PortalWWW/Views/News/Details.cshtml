@@ -1,0 +1,11 @@
+@model AgentHire.Data.Data.CMS.NewsItem
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="card">
+    <h1>@Model.Title</h1>
+    <p>@Model.Content</p>
+    <a asp-action="Index" class="btn btn-outline">Back</a>
+</div>

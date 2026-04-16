@@ -1,0 +1,18 @@
+@model IEnumerable<AgentHire.Data.Data.CMS.NewsItem>
+
+@{
+    ViewData["Title"] = "Latest Dispatches";
+}
+
+<div class="card">
+    <h1>Latest Dispatches</h1>
+    @foreach (var item in Model)
+    {
+        <div class="news-entry">
+            <h3>
+                <a asp-action="Details" asp-route-id="@item.IdNewsItem">@item.Title</a>
+            </h3>
+            <p>@item.Content</p>
+        </div>
+    }
+</div>

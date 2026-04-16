@@ -1,0 +1,61 @@
+@model AgentHire.Data.Data.CMS.Page
+
+@{
+    ViewData["Title"] = "Create Page";
+}
+
+<div class="form-card">
+    <h2>Create Page</h2>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="NavTitle"></label>
+            <input asp-for="NavTitle" class="form-control" placeholder="Navigation menu label" />
+            <span asp-validation-for="NavTitle" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" placeholder="Main page heading" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Position"></label>
+            <input asp-for="Position" type="number" class="form-control" />
+            <span asp-validation-for="Position" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Template"></label>
+            <select asp-for="Template" class="form-control">
+                <option value="default">Default — title + body text</option>
+                <option value="about">About — content with accent panel</option>
+                <option value="steps">Steps — content as numbered step cards</option>
+            </select>
+            <span asp-validation-for="Template" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Subtitle"></label>
+            <textarea asp-for="Subtitle" class="form-control" rows="4" placeholder="Optional — used as a robot/terminal dialog header on pages like Contact"></textarea>
+            <span asp-validation-for="Subtitle" class="text-danger"></span>
+        </div>
+
+        <div style="display:flex; gap:0.75rem; margin-top:1.5rem;">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
