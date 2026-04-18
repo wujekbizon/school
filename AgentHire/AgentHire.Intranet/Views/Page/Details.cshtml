@@ -4,7 +4,7 @@
     ViewData["Title"] = "Page Details";
 }
 
-<div class="container mt-4">
+<div class="container">
     <div class="card mx-auto" style="max-width: 800px;">
         <div class="card-header bg-light">
             <h2 class="mb-0">Page Details</h2>
@@ -26,8 +26,8 @@
                 </dd>
             </dl>
         </div>
-        <div class="card-footer d-flex justify-content-between">
-            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-outline">Back to List</a>
             <a asp-action="Edit" asp-route-id="@Model.IdPage" class="btn btn-primary">Edit Page</a>
         </div>
     </div>

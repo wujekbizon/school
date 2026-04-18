@@ -4,7 +4,7 @@
     ViewData["Title"] = "News Item Details";
 }
 
-<div class="container py-4">
+<div class="container">
     <div class="card shadow-sm mx-auto" style="max-width: 800px;">
         <div class="card-header bg-light">
             <h2 class="mb-0">Details</h2>
@@ -24,8 +24,8 @@
                 <dd class="col-sm-9 text-break">@Html.DisplayFor(model => model.Content)</dd>
             </dl>
         </div>
-        <div class="card-footer d-flex justify-content-between">
-            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+        <div class="card-footer">
+            <a asp-action="Index" class="btn btn-outline">Back to List</a>
             <a asp-action="Edit" asp-route-id="@Model.IdNewsItem" class="btn btn-primary">Edit</a>
         </div>
     </div>

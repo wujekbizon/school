@@ -4,7 +4,7 @@
     ViewData["Title"] = "Portfolio Item Details";
 }
 
-<div class="container mt-4">
+<div class="container">
     <div class="card shadow-sm mx-auto" style="max-width: 800px;">
         <div class="card-header bg-white">
             <h2 class="mb-0">Item Details</h2>
@@ -35,9 +35,9 @@
                 </dd>
             </dl>
         </div>
-        <div class="card-footer bg-light text-end">
+        <div class="card-footer">
             <a asp-action="Edit" asp-route-id="@Model.IdPortfolioItem" class="btn btn-primary">Edit</a>
-            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            <a asp-action="Index" class="btn btn-outline">Back to List</a>
         </div>
     </div>
 </div>

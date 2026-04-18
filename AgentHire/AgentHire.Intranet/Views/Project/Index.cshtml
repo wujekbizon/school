@@ -4,12 +4,12 @@
     ViewData["Title"] = "Lista Projektów";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="page-header">
     <h1>Lista Projektów</h1>
-    <a asp-action="Create" class="btn btn-sm btn-outline-primary">Dodaj nowy projekt</a>
+    <a asp-action="Create" class="btn btn-sm btn-primary">Dodaj nowy projekt</a>
 </div>
 
-<table class="table table-striped">
+<table class="table">
     <thead>
         <tr>
             <th>Tytuł</th>
@@ -30,9 +30,9 @@
                 <td>@item.PostedDate.ToShortDateString()</td>
                 <td>@(item.IdProjectCategory != null ? item.IdProjectCategory : "Brak")</td>
                 <td class="text-end">
-                    <a asp-action="Edit" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-secondary">Edytuj</a>
-                    <a asp-action="Details" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-info">Szczegóły</a>
-                    <a asp-action="Delete" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline-danger">Usuń</a>
+                    <a asp-action="Edit" asp-route-id="@item.IdProject" class="btn btn-sm btn-primary">Edytuj</a>
+                    <a asp-action="Details" asp-route-id="@item.IdProject" class="btn btn-sm btn-outline">Szczegóły</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdProject" class="btn btn-sm btn-danger">Usuń</a>
                 </td>
             </tr>
         }

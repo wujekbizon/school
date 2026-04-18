@@ -4,7 +4,7 @@
     ViewData["Title"] = "Agent Details";
 }
 
-<div class="container mt-4">
+<div class="container">
     <div class="card mx-auto shadow-sm" style="max-width: 800px;">
         <div class="card-header bg-info text-white">
             <h2 class="h5 mb-0">Agent Information</h2>
@@ -32,7 +32,7 @@
         </div>
         <div class="card-footer bg-light">
             <a asp-action="Edit" asp-route-id="@Model.IdAgent" class="btn btn-primary">Edit</a>
-            <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+            <a asp-action="Index" class="btn btn-outline">Back to List</a>
         </div>
     </div>
 </div>

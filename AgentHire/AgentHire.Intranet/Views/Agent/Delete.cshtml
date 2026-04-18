@@ -4,7 +4,7 @@
     ViewData["Title"] = "Delete Agent";
 }
 
-<div class="container mt-4 text-center">
+<div class="container">
     <div class="card border-danger mx-auto" style="max-width: 500px;">
         <div class="card-header bg-danger text-white">
             <h2 class="h5 mb-0">Confirm Deletion</h2>
@@ -19,7 +19,7 @@
             <form asp-action="Delete">
                 <input type="hidden" asp-for="IdAgent" />
                 <button type="submit" class="btn btn-danger">Delete Permanentely</button>
-                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                <a asp-action="Index" class="btn btn-outline">Cancel</a>
             </form>
         </div>
     </div>
