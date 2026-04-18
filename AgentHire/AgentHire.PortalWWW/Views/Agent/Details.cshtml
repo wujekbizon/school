@@ -14,7 +14,7 @@
         <span class="card-tag">Active Agent</span>
         <h1>@Model.FullName</h1>
         <p class="specialization-tag">@(Model.Specialization?.Name ?? "")</p>
-        <p class="rate"><strong>@Model.HourlyRate.ToString("C") / hr</strong></p>
+        <p class="rate"><strong>@Model.HourlyRate.ToString("0.00") PLN / hr</strong></p>
         <p style="color: var(--membrane-dim); line-height: 1.75; margin-top: 1rem;">@Model.Bio</p>
 
         <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">

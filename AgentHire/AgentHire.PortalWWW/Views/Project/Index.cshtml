@@ -17,7 +17,7 @@
                 <h3>@item.Title</h3>
                 <p class="rate">
                     <span>@Html.DisplayNameFor(model => item.Budget):</span>
-                    @Html.DisplayFor(modelItem => item.Budget)
+                    @item.Budget.ToString("0.00") PLN
                 </p>
                 <div style="margin-top: auto; padding-top: 1rem;">
                     <a asp-action="Details" asp-route-id="@item.IdProject" class="btn-detail">

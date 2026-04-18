@@ -36,7 +36,7 @@
                 <div class="agent-info">
                     <h3>@item.FullName</h3>
                     <p class="specialization-tag">@item.Specialization?.Name</p>
-                    <p class="rate">Rate: @item.HourlyRate.ToString("C")/hr</p>
+                    <p class="rate">Rate: @item.HourlyRate.ToString("0.00") PLN / hr</p>
                     <a asp-action="Details" asp-route-id="@item.IdAgent" class="btn-detail">View Profile</a>
                 </div>
             </div>

@@ -39,7 +39,7 @@
                         <div class="card-body">
                             <span class="card-tag">Active Agent</span>
                             <h3>@agent.FullName</h3>
-                            <p>@agent.HourlyRate / hr</p>
+                            <p>@agent.HourlyRate.ToString("0.00") PLN / hr</p>
                             <div style="margin-top:auto; padding-top:1rem;">
                                 <a asp-controller="Agent" asp-action="Details"
                                    asp-route-id="@agent.IdAgent"

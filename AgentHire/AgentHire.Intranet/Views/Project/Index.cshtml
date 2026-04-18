@@ -25,7 +25,7 @@
         {
             <tr>
                 <td>@item.Title</td>
-                <td>@item.Budget.ToString("C")</td>
+                <td>@item.Budget.ToString("0.00") PLN</td>
                 <td>@item.Status</td>
                 <td>@item.PostedDate.ToShortDateString()</td>
                 <td>@(item.IdProjectCategory != null ? item.IdProjectCategory : "Brak")</td>

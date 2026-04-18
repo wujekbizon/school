@@ -17,7 +17,7 @@
         <div class="agent-stats-panel">
             <div class="agent-stat-row">
                 <span class="agent-stat-label">@Html.DisplayNameFor(model => model.Budget)</span>
-                <span class="agent-stat-value highlight">@Html.DisplayFor(model => model.Budget)</span>
+                <span class="agent-stat-value highlight">@Model.Budget.ToString("0.00") PLN</span>
             </div>
             <div class="agent-stat-row">
                 <span class="agent-stat-label">@Html.DisplayNameFor(model => model.Status)</span>

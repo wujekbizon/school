@@ -24,7 +24,7 @@
             @foreach (var item in Model) {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.FullName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.HourlyRate)</td>
+                    <td>@item.HourlyRate.ToString("0.00") PLN</td>
                     <td>@Html.DisplayFor(modelItem => item.IsHighlighted)</td>
                     <td>@(item.Specialization?.Name)</td>
                     <td class="text-end">

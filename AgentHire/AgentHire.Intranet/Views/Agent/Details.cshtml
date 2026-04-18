@@ -18,7 +18,7 @@
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.Bio)</dd>
 
                 <dt class="col-sm-4">@Html.DisplayNameFor(model => model.HourlyRate)</dt>
-                <dd class="col-sm-8">@Html.DisplayFor(model => model.HourlyRate)</dd>
+                <dd class="col-sm-8">@Model.HourlyRate.ToString("0.00") PLN</dd>
 
                 <dt class="col-sm-4">@Html.DisplayNameFor(model => model.AvatarUrl)</dt>
                 <dd class="col-sm-8">@Html.DisplayFor(model => model.AvatarUrl)</dd>
